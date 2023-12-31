@@ -1,5 +1,4 @@
 import {
-  useFonts,
   RedHatDisplay_300Light,
   RedHatDisplay_400Regular,
   RedHatDisplay_500Medium,
@@ -7,14 +6,12 @@ import {
   RedHatDisplay_700Bold,
   RedHatDisplay_800ExtraBold,
   RedHatDisplay_900Black,
+  useFonts,
 } from '@expo-google-fonts/red-hat-display';
 import {Bungee_400Regular} from '@expo-google-fonts/bungee';
 import {Text} from 'react-native';
 import * as React from 'react';
-import * as SplashScreen from 'expo-splash-screen';
 import {DefaultFonts} from '../../shared/enums';
-
-SplashScreen.preventAutoHideAsync();
 
 interface DefaultTextProps {
   weight?: 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
@@ -53,8 +50,6 @@ export default function DefaultText(props: DefaultTextProps) {
   if (!fontsLoaded) {
     return null;
   }
-
-  SplashScreen.hideAsync();
 
   return (
     <Text {...props} style={[style, ...customStyles]}>

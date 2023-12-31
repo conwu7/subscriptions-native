@@ -50,6 +50,9 @@ export default function SubscriptionItem({
             {`$${formatAmountForDisplay(subscription.amount)} ${subscription.frequency} `}
           </DefaultText>
         )}
+        <DefaultText styles={[style.daysLeftText, textColorStyle]} weight={400}>
+          {'(in 2d) '}
+        </DefaultText>
       </View>
       <GenericOverlay
         isVisible={isModifyingSubscription}

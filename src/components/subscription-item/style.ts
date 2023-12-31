@@ -4,6 +4,9 @@ const style = StyleSheet.create({
   actualCostPerPeriod: {
     fontSize: 12,
   },
+  daysLeftText: {
+    fontSize: 10,
+  },
   costSection: {
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -17,7 +20,7 @@ const style = StyleSheet.create({
     borderRadius: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 75,
+    height: 81,
     marginBottom: 7,
     paddingVertical: 10,
     paddingHorizontal: 20,

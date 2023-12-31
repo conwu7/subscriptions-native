@@ -6,7 +6,7 @@ import Footer from '../footer';
 import {useEffect, useMemo, useState} from 'react';
 import {Subscription} from '../../shared/types/subscription';
 import {BillingPeriod} from '../../shared/enums';
-import {getMonthlyAmount} from '../../shared/amounts';
+import {getAnnualAmount, getMonthlyAmount} from '../../shared/amounts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Dashboard() {
@@ -54,17 +54,19 @@ export default function Dashboard() {
 
   const getTotals = () => {
     let monthlyTotal = 0;
+    let annualTotal = 0;
 
     for (const sub of subscriptions) {
       monthlyTotal += getMonthlyAmount(sub);
+      annualTotal += getAnnualAmount(sub);
     }
 
     monthlyTotal = Number(monthlyTotal.toFixed(2));
 
     return {
       [BillingPeriod.MONTHLY]: monthlyTotal,
-      [BillingPeriod.BIANNUAL]: monthlyTotal * 6,
-      [BillingPeriod.ANNUAL]: monthlyTotal * 12,
+      [BillingPeriod.BIANNUAL]: annualTotal / 2,
+      [BillingPeriod.ANNUAL]: annualTotal,
     };
   };
 

@@ -108,7 +108,7 @@ export default function Dashboard() {
 
   const sortedSubscriptions = useMemo(
     () => sortSubscriptions(subscriptions, sortSettings.sortType, sortSettings.sortValue),
-    [sortSettings]
+    [sortSettings, subscriptions]
   );
 
   return (

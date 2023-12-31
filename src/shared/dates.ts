@@ -26,7 +26,7 @@ export function getNextBillingDate(sub: Subscription) {
     if (sub.frequency === BillingPeriod.ANNUAL) {
       const numOfYears = Math.ceil(dayjs().diff(billingDate, 'year', true));
       newBillingDate = toStandardDateFormat(
-        dayjs(newBillingDate).date(originalDayOfMonth).add(numOfYears, 'month').toDate()
+        dayjs(newBillingDate).date(originalDayOfMonth).add(numOfYears, 'year').toDate()
       );
     }
   }

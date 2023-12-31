@@ -3,31 +3,57 @@ import {View} from 'react-native';
 import Header from '../header';
 import SubscriptionList from '../subscription-list';
 import Footer from '../footer';
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {Subscription} from '../../shared/types/subscription';
-import {BillingPeriod} from '../../shared/enums';
+import {BillingPeriod, SortType, SortValues} from '../../shared/enums';
 import {getAnnualAmount, getMonthlyAmount} from '../../shared/amounts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getNextBillingDate} from '../../shared/dates';
+import {sortSubscriptions} from '../../shared/subscriptions';
 
 export default function Dashboard() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [billingPeriod, setBillingPeriod] = useState(BillingPeriod.MONTHLY);
+  const [sortSettings, setSortSettings] = useState({
+    sortType: SortType.createdDate,
+    sortValue: SortValues.asc,
+  });
 
   useEffect(() => {
+    const getSortSettings = async () => {
+      const settings = await AsyncStorage.getItem('subscriptionList-sortSettings');
+      if (!settings) return;
+
+      setSortSettings(JSON.parse(settings));
+    };
     const getList = async () => {
       const list = await AsyncStorage.getItem('subscriptionList');
       if (!list) return;
-      setSubscriptions(JSON.parse(list));
+
+      const processedList = processSubscriptions(JSON.parse(list));
+      setSubscriptions(processedList);
     };
 
+    getSortSettings();
     getList();
   }, []);
+
+  const processSubscriptions = (subscriptions: Subscription[]) => {
+    const processedList: Subscription[] = [];
+    for (const sub of subscriptions) {
+      const newBillingDate = getNextBillingDate(sub);
+      processedList.push({...sub, nextBillingDate: newBillingDate});
+    }
+    AsyncStorage.setItem('subscriptionList', JSON.stringify(processedList));
+    return processedList;
+  };
 
   const addSubscription = (newSubscription: Subscription) => {
     const newList = [...subscriptions, newSubscription];
 
-    setSubscriptions(newList);
-    AsyncStorage.setItem('subscriptionList', JSON.stringify(newList));
+    const processedList = processSubscriptions(newList);
+    setSubscriptions(processedList);
+    AsyncStorage.setItem('subscriptionList', JSON.stringify(processedList));
   };
 
   const modifySubscription = (existingSubscription: Subscription) => {
@@ -35,8 +61,9 @@ export default function Dashboard() {
     const newList = [...subscriptions];
     newList[index] = existingSubscription;
 
-    setSubscriptions(newList);
-    AsyncStorage.setItem('subscriptionList', JSON.stringify(newList));
+    const processedList = processSubscriptions(newList);
+    setSubscriptions(processedList);
+    AsyncStorage.setItem('subscriptionList', JSON.stringify(processedList));
   };
 
   const deleteSubscription = (subscription: Subscription) => {
@@ -50,6 +77,15 @@ export default function Dashboard() {
     setBillingPeriod(prevState =>
       prevState === BillingPeriod.MONTHLY ? BillingPeriod.ANNUAL : BillingPeriod.MONTHLY
     );
+  };
+
+  const handleSortChange = (sortType: SortType, sortValue: SortValues) => {
+    const newSortSettings = {
+      sortType,
+      sortValue,
+    };
+    setSortSettings(newSortSettings);
+    AsyncStorage.setItem('subscriptionList-sortSettings', JSON.stringify(newSortSettings));
   };
 
   const getTotals = () => {
@@ -70,6 +106,11 @@ export default function Dashboard() {
     };
   };
 
+  const sortedSubscriptions = useMemo(
+    () => sortSubscriptions(subscriptions, sortSettings.sortType, sortSettings.sortValue),
+    [sortSettings]
+  );
+
   return (
     <View style={style.dashboard}>
       <Header
@@ -78,12 +119,16 @@ export default function Dashboard() {
         totals={getTotals()}
       />
       <SubscriptionList
-        subscriptions={subscriptions}
+        subscriptions={sortedSubscriptions}
         billingPeriod={billingPeriod}
         deleteSubscription={deleteSubscription}
         modifySubscription={modifySubscription}
       />
-      <Footer addSubscription={addSubscription} />
+      <Footer
+        addSubscription={addSubscription}
+        handleSortChange={handleSortChange}
+        sortSettings={sortSettings}
+      />
     </View>
   );
 }

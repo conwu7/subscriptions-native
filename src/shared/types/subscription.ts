@@ -7,5 +7,7 @@ export interface Subscription {
   frequency: BillingPeriod;
   id: string;
   name: string;
+  nextBillingDate: string;
+  originalDayOfMonth: number;
   notes?: string | null;
 }

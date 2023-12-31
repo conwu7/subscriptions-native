@@ -6,8 +6,9 @@ import {BillingPeriod} from '../../shared/enums';
 import {formatAmountForDisplay, getBillingPeriodAmounts} from '../../shared/amounts';
 import {determineTextColor} from '../../shared/color';
 import {useState} from 'react';
-import ModifySubscriptionForm from '../modify-subscription-form';
+import ModifySubscriptionForm from '../subscription-forms/modify-subscription-form';
 import GenericOverlay from '../generic-overlay';
+import {getRelativeTimeDisplay} from '../../shared/dates';
 
 interface SubscriptionItemProps {
   subscription: Subscription;
@@ -51,7 +52,7 @@ export default function SubscriptionItem({
           </DefaultText>
         )}
         <DefaultText styles={[style.daysLeftText, textColorStyle]} weight={400}>
-          {'(in 2d) '}
+          {`(${getRelativeTimeDisplay(subscription.nextBillingDate)}) `}
         </DefaultText>
       </View>
       <GenericOverlay

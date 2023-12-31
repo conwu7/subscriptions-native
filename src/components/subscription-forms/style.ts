@@ -2,17 +2,47 @@ import {StyleSheet} from 'react-native';
 import {DefaultFonts} from '../../shared/enums';
 
 const style = StyleSheet.create({
+  colorAndDateContainer: {
+    flexDirection: 'row',
+    gap: 30,
+    paddingHorizontal: 12,
+  },
   colorButton: {
     alignSelf: 'center',
     alignItems: 'center',
+    flex: 1,
     height: 60,
     justifyContent: 'center',
     marginBottom: 25,
     paddingHorizontal: 10,
-    width: '95%',
+    // width: '95%',
   },
   colorButtonText: {
     fontSize: 15,
+  },
+  colorPicker: {
+    flex: 0.9,
+    width: 400,
+  },
+  dateButton: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    flex: 1,
+    flexDirection: 'column',
+    height: 60,
+    justifyContent: 'center',
+    marginBottom: 25,
+    paddingHorizontal: 10,
+    // width: '95%',
+  },
+  dateButtonLabelText: {
+    fontSize: 12,
+  },
+  dateButtonText: {
+    fontSize: 14,
   },
   defaultLabelStyle: {
     color: 'darkslategray',
@@ -29,6 +59,20 @@ const style = StyleSheet.create({
     height: 60,
     paddingHorizontal: 10,
     width: '100%',
+  },
+  deleteButton: {
+    alignItems: 'center',
+    backgroundColor: 'firebrick',
+    borderRadius: 30,
+    justifyContent: 'center',
+    height: 60,
+    width: '50%',
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  deleteButtonText: {
+    color: 'antiquewhite',
+    fontSize: 18,
   },
   form: {
     padding: 10,
@@ -64,12 +108,13 @@ const style = StyleSheet.create({
   },
   submitButton: {
     alignItems: 'center',
-    backgroundColor: '#298f8f',
+    backgroundColor: 'darkslategray',
     borderRadius: 30,
     justifyContent: 'center',
     height: 60,
     width: '50%',
     alignSelf: 'center',
+    marginBottom: 20,
   },
   submitButtonText: {
     color: 'antiquewhite',

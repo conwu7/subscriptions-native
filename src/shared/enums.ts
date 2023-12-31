@@ -14,3 +14,15 @@ export enum DefaultFonts {
   black = 'RedHatDisplay_900Black',
   title = 'Bungee_400Regular',
 }
+
+export enum SortType {
+  name = 'name',
+  amount = 'amount',
+  upcomingDate = 'upcomingDate',
+  createdDate = 'createdDate',
+}
+
+export enum SortValues {
+  asc = 'asc',
+  desc = 'desc',
+}

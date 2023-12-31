@@ -1,10 +1,11 @@
 import style from './style';
-import {Modal, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {Feather, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import {useState} from 'react';
 import NewSubscriptionForm from '../new-subscription-form';
-import {Button, Overlay, Icon} from '@rneui/themed';
+import {Overlay} from '@rneui/themed';
 import {Subscription} from '../../shared/types/subscription';
+import GenericOverlay from '../generic-overlay';
 
 interface FooterProps {
   addSubscription: (subscription: Subscription) => void;
@@ -29,13 +30,9 @@ export default function Footer(props: FooterProps) {
       >
         <Ionicons name="create-outline" size={40} color="black" />
       </TouchableOpacity>
-      <Overlay
-        animationType="slide"
-        overlayStyle={style.newFormOverlay}
-        transparent
+      <GenericOverlay
         isVisible={isNewFormDisplayed}
-        onRequestClose={() => setNewFormDisplayStatus(prevState => !prevState)}
-        onBackdropPress={() => setNewFormDisplayStatus(prevState => !prevState)}
+        onClose={() => setNewFormDisplayStatus(prevState => !prevState)}
       >
         {isNewFormDisplayed && (
           <NewSubscriptionForm
@@ -43,7 +40,7 @@ export default function Footer(props: FooterProps) {
             onSubmit={() => setNewFormDisplayStatus(false)}
           />
         )}
-      </Overlay>
+      </GenericOverlay>
     </View>
   );
 }

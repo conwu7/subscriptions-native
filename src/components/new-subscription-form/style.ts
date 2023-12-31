@@ -14,10 +14,6 @@ const style = StyleSheet.create({
   colorButtonText: {
     fontSize: 15,
   },
-  colorPicker: {
-    flex: 1,
-    width: 400,
-  },
   defaultLabelStyle: {
     color: 'darkslategray',
     fontFamily: DefaultFonts.light,

@@ -5,10 +5,9 @@ import {Subscription} from '../../shared/types/subscription';
 import {BillingPeriod} from '../../shared/enums';
 import {formatAmountForDisplay, getBillingPeriodAmounts} from '../../shared/amounts';
 import {determineTextColor} from '../../shared/color';
-import NewSubscriptionForm from '../new-subscription-form';
-import {Overlay} from '@rneui/themed';
 import {useState} from 'react';
 import ModifySubscriptionForm from '../modify-subscription-form';
+import GenericOverlay from '../generic-overlay';
 
 interface SubscriptionItemProps {
   subscription: Subscription;
@@ -52,13 +51,9 @@ export default function SubscriptionItem({
           </DefaultText>
         )}
       </View>
-      <Overlay
-        animationType="slide"
-        overlayStyle={style.modifyFormOverlay}
-        transparent
+      <GenericOverlay
         isVisible={isModifyingSubscription}
-        onRequestClose={() => setModifyingSubscription(prevState => !prevState)}
-        onBackdropPress={() => setModifyingSubscription(prevState => !prevState)}
+        onClose={() => setModifyingSubscription(prevState => !prevState)}
       >
         {isModifyingSubscription && (
           <ModifySubscriptionForm
@@ -68,7 +63,7 @@ export default function SubscriptionItem({
             onClose={() => setModifyingSubscription(false)}
           />
         )}
-      </Overlay>
+      </GenericOverlay>
     </TouchableOpacity>
   );
 }

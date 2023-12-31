@@ -10,10 +10,8 @@ import {Ionicons} from '@expo/vector-icons';
 import {useState} from 'react';
 import Dropdown from 'react-native-input-select';
 import {Subscription} from '../../shared/types/subscription';
-import {ColorPicker} from 'react-native-color-picker';
-import Slider from '@react-native-community/slider';
-import {Overlay} from '@rneui/themed';
 import {determineTextColor} from '../../shared/color';
+import ColorPickerOverlay from '../color-picker-overlay';
 
 const schema = yup
   .object({
@@ -141,22 +139,12 @@ export default function ModifySubscriptionForm(props: FormProps) {
           </DefaultText>
         </TouchableOpacity>
 
-        <Overlay
-          animationType="slide"
-          transparent
+        <ColorPickerOverlay
+          color={color}
+          handleSelectColor={handleSelectColor}
           isVisible={isDisplayingColorPicker}
-          onRequestClose={() => setColorPickerStatus(prevState => !prevState)}
-          onBackdropPress={() => setColorPickerStatus(prevState => !prevState)}
-        >
-          <ColorPicker
-            oldColor={color}
-            /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-            // @ts-ignore
-            sliderComponent={Slider}
-            onColorSelected={color => handleSelectColor(color)}
-            style={style.colorPicker}
-          />
-        </Overlay>
+          onClose={() => setColorPickerStatus(prevState => !prevState)}
+        />
 
         <Controller
           control={control}

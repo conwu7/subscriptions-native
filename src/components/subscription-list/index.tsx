@@ -1,5 +1,5 @@
 import style from './style';
-import {Animated, ScrollView, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import SubscriptionItem from '../subscription-item';
 import {Subscription} from '../../shared/types/subscription';
 import {BillingPeriod} from '../../shared/enums';

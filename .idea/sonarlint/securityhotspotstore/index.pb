@@ -75,3 +75,9 @@ a
 1src/components/modify-subscription-form/index.tsx,6/9/6932b0cbcaa956a9c1c6621c02b0ddb0c88ccffc
 `
 0src/components/modify-subscription-form/style.ts,5/2/5260d7109e50b61b68e5fa07f21e62e91b75a939
+]
+-src/components/color-picker-overlay/index.tsx,8/a/8a3668548b1fb9d9db583d351b0ab815673e1f3d
+W
+'src/components/generic-overlay/style.ts,5/8/58138a75a6714384f1b516e63baf38288fb45694
+X
+(src/components/generic-overlay/index.tsx,4/8/482ef9ce49328cc7c13a9e6c5854f59e0b94a5b9

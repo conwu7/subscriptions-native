@@ -16,12 +16,6 @@ const style = StyleSheet.create({
   footerButtonDefault: {
     flexGrow: 1,
   },
-  newFormOverlay: {
-    backgroundColor: '#F4F4F4',
-    flex: 1,
-    height: 'auto',
-    width: '100%',
-  },
 });
 
 export default style;

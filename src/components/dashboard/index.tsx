@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import Header from '../header';
 import SubscriptionList from '../subscription-list';
 import Footer from '../footer';
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Subscription} from '../../shared/types/subscription';
 import {BillingPeriod} from '../../shared/enums';
 import {getAnnualAmount, getMonthlyAmount} from '../../shared/amounts';

@@ -12,12 +12,6 @@ const style = StyleSheet.create({
     fontSize: 19,
   },
   detailsSection: {},
-  modifyFormOverlay: {
-    backgroundColor: '#F4F4F4',
-    flex: 1,
-    height: 'auto',
-    width: '100%',
-  },
   subscriptionItem: {
     alignItems: 'center',
     borderRadius: 5,

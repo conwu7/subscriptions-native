@@ -68,7 +68,7 @@ const style = StyleSheet.create({
   },
   submitButton: {
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: '#298f8f',
     borderRadius: 30,
     justifyContent: 'center',
     height: 60,
@@ -77,7 +77,7 @@ const style = StyleSheet.create({
   },
   submitButtonText: {
     color: 'antiquewhite',
-    fontSize: 20,
+    fontSize: 18,
   },
 });
 

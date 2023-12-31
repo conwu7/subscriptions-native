@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F0F0F4"
-      }
+      },
+      "package": "com.conwu7.subscriptionsnative"
     },
     "androidStatusBar": {
       "backgroundColor": "#F4F4F4"
@@ -31,6 +32,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f379e73a-bf84-44c1-9b34-1fb202007c3c"
+      }
     }
   }
 }

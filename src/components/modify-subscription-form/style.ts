@@ -15,7 +15,7 @@ const style = StyleSheet.create({
     fontSize: 15,
   },
   colorPicker: {
-    flex: 1,
+    flex: 0.9,
     width: 400,
   },
   defaultLabelStyle: {
@@ -46,7 +46,7 @@ const style = StyleSheet.create({
   },
   deleteButtonText: {
     color: 'antiquewhite',
-    fontSize: 20,
+    fontSize: 18,
   },
   form: {
     padding: 10,
@@ -92,7 +92,7 @@ const style = StyleSheet.create({
   },
   submitButtonText: {
     color: 'antiquewhite',
-    fontSize: 20,
+    fontSize: 18,
   },
 });
 

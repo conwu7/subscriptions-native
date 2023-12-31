@@ -1,6 +1,13 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": ["expo/tsconfig.base","./node_modules/gts/tsconfig-google.json"],
   "compilerOptions": {
-    "strict": true
-  }
+    "lib":["ES7","ES2023", "ESNext.Array", "ESNext", "ES2023.Array"],
+    "strict": true,
+    "rootDir": ".",
+    "outDir": "build"
+  },
+  "include": [
+    "**/*.ts",
+    "test/**/*.ts"
+  ]
 }

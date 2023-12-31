@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "finances-native",
-    "slug": "finances-native",
+    "name": "Subscriptions",
+    "slug": "subscriptions-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#F4F4F4"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,8 +20,14 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#F0F0F4"
       }
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#F4F4F4"
+    },
+    "androidNavigationBar": {
+      "backgroundColor": "#F4F4F4"
     },
     "web": {
       "favicon": "./assets/favicon.png"

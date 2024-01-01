@@ -61,6 +61,7 @@ export default function Footer(props: FooterProps) {
       >
         {isNewFormDisplayed && (
           <NewSubscriptionForm
+            allTags={props.allTags}
             addSubscription={props.addSubscription}
             onSubmit={() => setNewFormDisplayStatus(false)}
           />

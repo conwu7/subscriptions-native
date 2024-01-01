@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import DefaultText from '../../default-text';
 import style from '../style';
 import {Input} from '@rneui/base';
-import {Entypo, Ionicons} from '@expo/vector-icons';
+import {Entypo} from '@expo/vector-icons';
 import {useState} from 'react';
 import Dropdown from 'react-native-input-select';
 import {Subscription} from '../../../shared/types/subscription';
@@ -36,6 +36,7 @@ type FormData = {
 };
 
 interface FormProps {
+  allTags?: string[];
   modifySubscription: (subscription: Subscription) => void;
   deleteSubscription: (subscription: Subscription) => void;
   onClose: () => void;
@@ -113,11 +114,17 @@ export default function ModifySubscriptionForm(props: FormProps) {
     setTagInputValue('');
   };
 
-  const handleRemoveTag = (tag: string) => {
+  const handleSelectTag = (tag: string) => {
     const newSet = new Set(tags);
-    newSet.delete(tag);
+    if (newSet.has(tag)) {
+      newSet.delete(tag);
+    } else {
+      newSet.add(tag);
+    }
     setTags(newSet);
   };
+
+  const combinedTagsSet = new Set([...tags, ...(props.allTags ?? [])]);
 
   return (
     <KeyboardAvoidingView style={style.formContainer} behavior={'position'}>
@@ -263,17 +270,17 @@ export default function ModifySubscriptionForm(props: FormProps) {
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={style.addedTagsContainer} horizontal={true}>
-          {[...tags].map(tag => (
+        <View style={style.addedTagsContainer}>
+          {[...combinedTagsSet].map(tag => (
             <TouchableOpacity
-              style={style.tagItemButton}
-              onPress={() => handleRemoveTag(tag)}
+              style={tags.has(tag) ? style.tagItemSelectedButton : style.tagItemButton}
+              onPress={() => handleSelectTag(tag)}
               key={tag}
             >
               <DefaultText>{tag}</DefaultText>
             </TouchableOpacity>
           ))}
-        </ScrollView>
+        </View>
 
         <Controller
           control={control}

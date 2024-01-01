@@ -5,8 +5,8 @@ const style = StyleSheet.create({
   addedTagsContainer: {
     paddingHorizontal: 10,
     flexDirection: 'row',
-    // justifyContent: 'flex-start',
-    // alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 5,
   },
   colorAndDateContainer: {
     flexDirection: 'row',
@@ -152,6 +152,14 @@ const style = StyleSheet.create({
   },
   tagItemButton: {
     backgroundColor: 'lightyellow',
+    padding: 10,
+    borderRadius: 10,
+    marginHorizontal: 5,
+  },
+  tagItemSelectedButton: {
+    backgroundColor: 'lightgreen',
+    borderWidth: 1,
+    borderColor: 'gray',
     padding: 10,
     borderRadius: 10,
     marginHorizontal: 5,

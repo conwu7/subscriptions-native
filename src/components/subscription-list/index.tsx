@@ -5,6 +5,7 @@ import {Subscription} from '../../shared/types/subscription';
 import {BillingPeriod} from '../../shared/enums';
 
 interface SubscriptionListProps {
+  allTags?: string[];
   subscriptions: Subscription[];
   billingPeriod: BillingPeriod;
   modifySubscription: (sub: Subscription) => void;
@@ -16,6 +17,7 @@ export default function SubscriptionList(props: SubscriptionListProps) {
       {props.subscriptions.map(sub => (
         <SubscriptionItem
           key={sub.id}
+          allTags={props.allTags}
           subscription={sub}
           billingPeriod={props.billingPeriod}
           deleteSubscription={props.deleteSubscription}

@@ -141,6 +141,7 @@ export default function Dashboard() {
         totals={getTotals()}
       />
       <SubscriptionList
+        allTags={allTags}
         subscriptions={sortedAndFilteredSubs}
         billingPeriod={billingPeriod}
         deleteSubscription={deleteSubscription}

@@ -11,6 +11,7 @@ import GenericOverlay from '../generic-overlay';
 import {getRelativeTimeDisplay} from '../../shared/dates';
 
 interface SubscriptionItemProps {
+  allTags?: string[];
   subscription: Subscription;
   billingPeriod: BillingPeriod;
   modifySubscription: (sub: Subscription) => void;
@@ -18,6 +19,7 @@ interface SubscriptionItemProps {
 }
 
 export default function SubscriptionItem({
+  allTags,
   subscription,
   billingPeriod,
   modifySubscription,
@@ -61,6 +63,7 @@ export default function SubscriptionItem({
       >
         {isModifyingSubscription && (
           <ModifySubscriptionForm
+            allTags={allTags}
             subscription={subscription}
             modifySubscription={modifySubscription}
             deleteSubscription={deleteSubscription}

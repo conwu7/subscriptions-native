@@ -24,7 +24,7 @@ const style = StyleSheet.create({
   },
   sortType: {
     color: 'darkslategray',
-    fontSize: 20,
+    fontSize: 17,
     width: 100,
     marginRight: 20,
     marginVertical: 20,
@@ -32,7 +32,6 @@ const style = StyleSheet.create({
   sortValueIconButton: {
     margin: 10,
     padding: 10,
-    height: 60,
     borderRadius: 30,
   },
   submitButton: {

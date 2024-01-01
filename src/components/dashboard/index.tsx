@@ -9,7 +9,7 @@ import {BillingPeriod, SortType, SortValues} from '../../shared/enums';
 import {getAnnualAmount, getMonthlyAmount} from '../../shared/amounts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getNextBillingDate} from '../../shared/dates';
-import {sortSubscriptions} from '../../shared/subscriptions';
+import {filterSubscriptions, sortSubscriptions} from '../../shared/subscriptions';
 
 export default function Dashboard() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
@@ -18,6 +18,11 @@ export default function Dashboard() {
     sortType: SortType.createdDate,
     sortValue: SortValues.asc,
   });
+  const [filterSettings, setFilterSettings] = useState({
+    selectedBillingPeriods: new Set<BillingPeriod>(),
+    selectedTags: new Set<string>(),
+  });
+  const [allTags, setAllTags] = useState<string[]>([]);
 
   useEffect(() => {
     const getSortSettings = async () => {
@@ -38,12 +43,22 @@ export default function Dashboard() {
     getList();
   }, []);
 
+  const handleFilterApply = (
+    selectedTags: Set<string>,
+    selectedBillingPeriods: Set<BillingPeriod>
+  ) => {
+    setFilterSettings({selectedTags, selectedBillingPeriods});
+  };
+
   const processSubscriptions = (subscriptions: Subscription[]) => {
     const processedList: Subscription[] = [];
+    const allTagsCombined = new Set<string>();
     for (const sub of subscriptions) {
+      sub.tags?.forEach(tag => allTagsCombined.add(tag));
       const newBillingDate = getNextBillingDate(sub);
       processedList.push({...sub, nextBillingDate: newBillingDate});
     }
+    setAllTags([...allTagsCombined]);
     AsyncStorage.setItem('subscriptionList', JSON.stringify(processedList));
     return processedList;
   };
@@ -88,11 +103,20 @@ export default function Dashboard() {
     AsyncStorage.setItem('subscriptionList-sortSettings', JSON.stringify(newSortSettings));
   };
 
+  const sortedAndFilteredSubs = useMemo(() => {
+    const filteredSubs = filterSubscriptions(
+      subscriptions,
+      filterSettings.selectedTags,
+      filterSettings.selectedBillingPeriods
+    );
+    return sortSubscriptions(filteredSubs, sortSettings.sortType, sortSettings.sortValue);
+  }, [sortSettings, filterSettings, subscriptions]);
+
   const getTotals = () => {
     let monthlyTotal = 0;
     let annualTotal = 0;
 
-    for (const sub of subscriptions) {
+    for (const sub of sortedAndFilteredSubs) {
       monthlyTotal += getMonthlyAmount(sub);
       annualTotal += getAnnualAmount(sub);
     }
@@ -106,26 +130,27 @@ export default function Dashboard() {
     };
   };
 
-  const sortedSubscriptions = useMemo(
-    () => sortSubscriptions(subscriptions, sortSettings.sortType, sortSettings.sortValue),
-    [sortSettings, subscriptions]
-  );
-
   return (
     <View style={style.dashboard}>
       <Header
+        isFilteredList={
+          filterSettings.selectedTags.size !== 0 || filterSettings.selectedBillingPeriods.size !== 0
+        }
         billingPeriod={billingPeriod}
         switchBillingPeriod={switchBillingPeriod}
         totals={getTotals()}
       />
       <SubscriptionList
-        subscriptions={sortedSubscriptions}
+        subscriptions={sortedAndFilteredSubs}
         billingPeriod={billingPeriod}
         deleteSubscription={deleteSubscription}
         modifySubscription={modifySubscription}
       />
       <Footer
+        handleFilterApply={handleFilterApply}
         addSubscription={addSubscription}
+        allTags={allTags}
+        filterSettings={filterSettings}
         handleSortChange={handleSortChange}
         sortSettings={sortSettings}
       />

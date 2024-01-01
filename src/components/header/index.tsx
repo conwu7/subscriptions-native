@@ -8,15 +8,23 @@ import {formatAmountForDisplay} from '../../shared/amounts';
 
 interface HeaderProps {
   billingPeriod: BillingPeriod;
+  isFilteredList: boolean;
   switchBillingPeriod: () => void;
   totals: Record<BillingPeriod, number>;
 }
 export default function Header(props: HeaderProps) {
   return (
     <View style={style.header}>
-      <DefaultText styles={[style.titleText]} weight={900}>
-        Subscriptions
-      </DefaultText>
+      <View style={style.titleTextArea}>
+        <DefaultText styles={[style.titleText]} weight={900}>
+          Subscriptions
+        </DefaultText>
+        {props.isFilteredList && (
+          <DefaultText styles={[style.filteredStatus]} weight={600}>
+            [Filtered]
+          </DefaultText>
+        )}
+      </View>
       <TouchableOpacity style={style.totalPerPeriodArea} onPress={props.switchBillingPeriod}>
         <View style={style.totalPerPeriodTextArea}>
           <DefaultText styles={[style.totalPeriod]} weight={400}>

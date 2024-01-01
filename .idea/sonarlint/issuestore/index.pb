@@ -105,3 +105,9 @@ U
 %src/components/sort-settings/style.ts,0/c/0ce3a0696a696988d85446c3684fd44702daa702
 K
 src/shared/subscriptions.ts,0/8/08737357b6a74bb860d1c6d8813d8a3d43b1115d
+X
+(src/components/filter-settings/index.tsx,c/4/c4353ece736b2d4857169d268458dab839b7dbbd
+K
+src/shared/types/filters.ts,8/1/81f0f0508e562264089e121243291f3aebd1129f
+W
+'src/components/filter-settings/style.ts,0/e/0eb668435a27300f870ac17d36d9ac3efe635b4b

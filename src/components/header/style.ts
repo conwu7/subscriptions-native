@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
+  filteredStatus: {
+    fontSize: 14,
+    color: 'red',
+  },
   header: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -9,9 +13,12 @@ const style = StyleSheet.create({
     padding: 5,
     paddingHorizontal: 10,
   },
+  titleTextArea: {
+    flexDirection: 'column',
+    paddingLeft: 10,
+  },
   titleText: {
     fontSize: 20,
-    paddingLeft: 10,
   },
   totalPerPeriodArea: {
     flexDirection: 'row',

@@ -99,7 +99,7 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   formTitle: {
-    fontSize: 20,
+    fontSize: 30,
     marginBottom: 40,
     textAlign: 'center',
     width: '100%',
@@ -151,7 +151,7 @@ const style = StyleSheet.create({
     width: 50,
   },
   tagItemButton: {
-    backgroundColor: 'lightgray',
+    backgroundColor: 'lightyellow',
     padding: 10,
     borderRadius: 10,
     marginHorizontal: 5,

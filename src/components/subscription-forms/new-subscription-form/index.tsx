@@ -115,10 +115,7 @@ export default function NewSubscriptionForm(props: FormProps) {
     <KeyboardAvoidingView style={style.formContainer} behavior={'position'}>
       <ScrollView style={style.form}>
         <DefaultText weight={700} styles={[style.formTitle]}>
-          <>
-            <Ionicons name="create-outline" size={40} color="gray" />
-            New Subscription
-          </>
+          New Subscription
         </DefaultText>
         <Controller
           control={control}

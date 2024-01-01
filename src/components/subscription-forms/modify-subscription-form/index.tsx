@@ -123,10 +123,7 @@ export default function ModifySubscriptionForm(props: FormProps) {
     <KeyboardAvoidingView style={style.formContainer} behavior={'position'}>
       <ScrollView style={style.form}>
         <DefaultText weight={700} styles={[style.formTitle]}>
-          <>
-            <Ionicons name="create-outline" size={40} color="gray" />
-            Modify Subscription
-          </>
+          Modify Subscription
         </DefaultText>
 
         <Controller
@@ -161,7 +158,6 @@ export default function ModifySubscriptionForm(props: FormProps) {
               labelStyle={style.defaultLabelStyle}
               errorStyle={style.errorStyle}
               placeholder="Description e.g. Ultra HD Plan"
-              errorStyle={{color: 'red'}}
               errorMessage={errors.description?.message}
               onChangeText={onChange}
               onBlur={onBlur}

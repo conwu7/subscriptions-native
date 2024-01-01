@@ -53,7 +53,7 @@ export default function SortSettings(props: SortSettingsProps) {
                 : undefined,
             ]}
           >
-            <AntDesign name="arrowup" size={40} color="darkslategray" />
+            <AntDesign name="arrowup" size={30} color="darkslategray" />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleClick(item.name, SortValues.desc)}
@@ -64,7 +64,7 @@ export default function SortSettings(props: SortSettingsProps) {
                 : undefined,
             ]}
           >
-            <AntDesign name="arrowdown" size={40} color="darkslategray" />
+            <AntDesign name="arrowdown" size={30} color="darkslategray" />
           </TouchableOpacity>
         </View>
       ))}

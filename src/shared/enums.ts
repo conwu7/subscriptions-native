@@ -26,3 +26,8 @@ export enum SortValues {
   asc = 'asc',
   desc = 'desc',
 }
+
+export enum FilterType {
+  billingPeriod = 'billingPeriod',
+  tags = 'tags',
+}

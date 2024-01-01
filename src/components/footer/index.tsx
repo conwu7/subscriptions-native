@@ -6,27 +6,41 @@ import NewSubscriptionForm from '../subscription-forms/new-subscription-form';
 import {Subscription} from '../../shared/types/subscription';
 import GenericOverlay from '../generic-overlay';
 import SortSettings from '../sort-settings';
-import {SortType, SortValues} from '../../shared/enums';
+import {BillingPeriod, SortType, SortValues} from '../../shared/enums';
+import FilterSettings from '../filter-settings';
 
 interface FooterProps {
   addSubscription: (subscription: Subscription) => void;
+  allTags: string[];
   handleSortChange: (type: SortType, value: SortValues) => void;
+  handleFilterApply: (
+    selectedTags: Set<string>,
+    selectedBillingPeriods: Set<BillingPeriod>
+  ) => void;
   sortSettings: {
     sortType: SortType;
     sortValue: SortValues;
+  };
+  filterSettings: {
+    selectedBillingPeriods: Set<BillingPeriod>;
+    selectedTags: Set<string>;
   };
 }
 
 export default function Footer(props: FooterProps) {
   const [isNewFormDisplayed, setNewFormDisplayStatus] = useState(false);
   const [isSortSettingsDisplayed, setSortSettingsStatus] = useState(false);
+  const [isFilterSettingsDisplayed, setFilterSettingsStatus] = useState(false);
 
   return (
     <View style={style.footer}>
       <TouchableOpacity style={style.footerButtonDefault}>
         <Feather name="settings" size={30} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={style.footerButtonDefault}>
+      <TouchableOpacity
+        style={style.footerButtonDefault}
+        onPress={() => setFilterSettingsStatus(true)}
+      >
         <Feather name="filter" size={30} color="black" />
       </TouchableOpacity>
       <TouchableOpacity
@@ -63,6 +77,21 @@ export default function Footer(props: FooterProps) {
             sortValue={props.sortSettings.sortValue}
             onClose={() => setSortSettingsStatus(false)}
             handleSortChange={props.handleSortChange}
+          />
+        )}
+      </GenericOverlay>
+
+      <GenericOverlay
+        isVisible={isFilterSettingsDisplayed}
+        onClose={() => setFilterSettingsStatus(prevState => !prevState)}
+      >
+        {isFilterSettingsDisplayed && (
+          <FilterSettings
+            onClose={() => setFilterSettingsStatus(false)}
+            allTags={props.allTags}
+            handleFilterApply={props.handleFilterApply}
+            selectedBillingPeriods={props.filterSettings.selectedBillingPeriods}
+            selectedTags={props.filterSettings.selectedTags}
           />
         )}
       </GenericOverlay>

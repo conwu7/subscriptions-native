@@ -1,4 +1,4 @@
-import {SortType, SortValues} from './enums';
+import {BillingPeriod, SortType, SortValues} from './enums';
 import {Subscription} from './types/subscription';
 import {getAnnualAmount} from './amounts';
 import dayjs from 'dayjs';
@@ -34,4 +34,27 @@ export function sortSubscriptions(
       return [...subscriptions].reverse();
     }
   }
+}
+
+export function filterSubscriptions(
+  subscriptions: Subscription[],
+  tags: Set<string>,
+  periods: Set<BillingPeriod>
+) {
+  return subscriptions.filter(sub => {
+    const shouldFilterTags = tags.size > 0;
+    const shouldFilterPeriods = periods.size > 0;
+    const hasASelectedTag = !!sub.tags?.some(tag => tags.has(tag));
+    const hasASelectedPeriod = periods.has(sub.frequency);
+
+    if (!shouldFilterPeriods && !shouldFilterTags) {
+      return subscriptions;
+    } else if (shouldFilterPeriods && !shouldFilterTags) {
+      return hasASelectedPeriod;
+    } else if (!shouldFilterPeriods && shouldFilterTags) {
+      return hasASelectedTag;
+    } else {
+      return hasASelectedTag && hasASelectedPeriod;
+    }
+  });
 }

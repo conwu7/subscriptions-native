@@ -2,9 +2,17 @@ import {StyleSheet} from 'react-native';
 import {DefaultFonts} from '../../shared/enums';
 
 const style = StyleSheet.create({
+  addedTagsContainer: {
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    // justifyContent: 'flex-start',
+    // alignItems: 'center',
+  },
   colorAndDateContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 30,
+    marginVertical: 5,
     paddingHorizontal: 12,
   },
   colorButton: {
@@ -13,7 +21,6 @@ const style = StyleSheet.create({
     flex: 1,
     height: 60,
     justifyContent: 'center',
-    marginBottom: 25,
     paddingHorizontal: 10,
     // width: '95%',
   },
@@ -34,9 +41,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     height: 60,
     justifyContent: 'center',
-    marginBottom: 25,
     paddingHorizontal: 10,
-    // width: '95%',
   },
   dateButtonLabelText: {
     fontSize: 12,
@@ -49,6 +54,17 @@ const style = StyleSheet.create({
     fontFamily: DefaultFonts.light,
     fontSize: 15,
   },
+  defaultTextInputContainerStyle: {
+    marginVertical: 8,
+    padding: 0,
+    height: 63,
+  },
+  errorStyle: {
+    margin: 0,
+    height: 20,
+    color: 'red',
+  },
+
   defaultTextInputStyle: {
     backgroundColor: 'white',
     borderWidth: 1,
@@ -56,7 +72,7 @@ const style = StyleSheet.create({
     color: 'black',
     fontFamily: DefaultFonts.medium,
     fontSize: 13,
-    height: 60,
+    height: 55,
     paddingHorizontal: 10,
     width: '100%',
   },
@@ -95,9 +111,11 @@ const style = StyleSheet.create({
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
+    height: 50,
     justifyContent: 'center',
     paddingHorizontal: 10,
     width: '95%',
+    marginTop: 10,
   },
   dropdownHelperText: {
     fontFamily: DefaultFonts.medium,
@@ -114,11 +132,29 @@ const style = StyleSheet.create({
     height: 60,
     width: '50%',
     alignSelf: 'center',
-    marginBottom: 20,
+    marginVertical: 20,
   },
   submitButtonText: {
     color: 'antiquewhite',
     fontSize: 18,
+  },
+  tagsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginVertical: 5,
+  },
+  tagAddButton: {
+    height: 60,
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+  },
+  tagItemButton: {
+    backgroundColor: 'lightgray',
+    padding: 10,
+    borderRadius: 10,
+    marginHorizontal: 5,
   },
 });
 

@@ -10,4 +10,5 @@ export interface Subscription {
   nextBillingDate: string;
   originalDayOfMonth: number;
   notes?: string | null;
+  tags?: string[];
 }

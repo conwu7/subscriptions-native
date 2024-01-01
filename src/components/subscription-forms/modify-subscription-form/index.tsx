@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import DefaultText from '../../default-text';
 import style from '../style';
 import {Input} from '@rneui/base';
-import {Ionicons} from '@expo/vector-icons';
+import {Entypo, Ionicons} from '@expo/vector-icons';
 import {useState} from 'react';
 import Dropdown from 'react-native-input-select';
 import {Subscription} from '../../../shared/types/subscription';
@@ -48,6 +48,9 @@ export default function ModifySubscriptionForm(props: FormProps) {
   const [color, setColor] = useState(props.subscription.color);
   const [nextBillingDate, setNextBillingDate] = useState(props.subscription.nextBillingDate);
   const [isModifyingDate, setIsModifyingDate] = useState(false);
+  const [tags, setTags] = useState(new Set<string>(props.subscription.tags ?? []));
+  const [tagInputValue, setTagInputValue] = useState('');
+  const [tagErrorMessage, setTagErrorMessage] = useState<string | undefined>(undefined);
 
   const {
     control,
@@ -76,6 +79,7 @@ export default function ModifySubscriptionForm(props: FormProps) {
       notes: data.notes?.trim() || null,
       nextBillingDate: nextBillingDate,
       originalDayOfMonth: dayjs(nextBillingDate).date(),
+      tags: [...tags],
     });
     props.onClose();
   };
@@ -99,6 +103,22 @@ export default function ModifySubscriptionForm(props: FormProps) {
     }
   };
 
+  const handleAddTag = () => {
+    if (tagInputValue.trim().length < 3) {
+      setTagErrorMessage('Must be longer than 3 charaters');
+      return;
+    }
+    setTagErrorMessage(undefined);
+    tags.add(tagInputValue.trim().toLowerCase());
+    setTagInputValue('');
+  };
+
+  const handleRemoveTag = (tag: string) => {
+    const newSet = new Set(tags);
+    newSet.delete(tag);
+    setTags(newSet);
+  };
+
   return (
     <KeyboardAvoidingView style={style.formContainer} behavior={'position'}>
       <ScrollView style={style.form}>
@@ -116,9 +136,10 @@ export default function ModifySubscriptionForm(props: FormProps) {
           render={({field: {onChange, onBlur, value}}) => (
             <Input
               inputStyle={style.defaultTextInputStyle}
+              containerStyle={style.defaultTextInputContainerStyle}
               labelStyle={style.defaultLabelStyle}
+              errorStyle={style.errorStyle}
               placeholder="Name e.g. Netflix"
-              errorStyle={{color: 'red'}}
               errorMessage={errors.name?.message}
               onChangeText={onChange}
               onBlur={onBlur}
@@ -136,7 +157,9 @@ export default function ModifySubscriptionForm(props: FormProps) {
           render={({field: {onChange, onBlur, value}}) => (
             <Input
               inputStyle={style.defaultTextInputStyle}
+              containerStyle={style.defaultTextInputContainerStyle}
               labelStyle={style.defaultLabelStyle}
+              errorStyle={style.errorStyle}
               placeholder="Description e.g. Ultra HD Plan"
               errorStyle={{color: 'red'}}
               errorMessage={errors.description?.message}
@@ -191,9 +214,10 @@ export default function ModifySubscriptionForm(props: FormProps) {
           render={({field: {onChange, onBlur, value}}) => (
             <Input
               inputStyle={style.defaultTextInputStyle}
+              containerStyle={style.defaultTextInputContainerStyle}
               labelStyle={style.defaultLabelStyle}
+              errorStyle={style.errorStyle}
               placeholder="Amount e.g. 20.00"
-              errorStyle={{color: 'red'}}
               errorMessage={errors.amount?.message}
               onChangeText={onChange}
               onBlur={onBlur}
@@ -221,6 +245,40 @@ export default function ModifySubscriptionForm(props: FormProps) {
           }}
         />
 
+        <View style={style.tagsContainer}>
+          <Input
+            inputStyle={style.defaultTextInputStyle}
+            containerStyle={style.defaultTextInputContainerStyle}
+            labelStyle={style.defaultLabelStyle}
+            errorStyle={style.errorStyle}
+            placeholder="Add tags e.g. Streaming"
+            errorMessage={tagErrorMessage}
+            onChangeText={value => setTagInputValue(value)}
+            value={tagInputValue}
+            onSubmitEditing={handleAddTag}
+            rightIcon={
+              <TouchableOpacity style={style.tagAddButton} onPress={handleAddTag}>
+                <Entypo name="add-to-list" size={30} color="black" />
+              </TouchableOpacity>
+            }
+          />
+          <TouchableOpacity style={style.tagAddButton}>
+            <Entypo name="add-to-list" size={50} color="black" />
+          </TouchableOpacity>
+        </View>
+
+        <ScrollView style={style.addedTagsContainer} horizontal={true}>
+          {[...tags].map(tag => (
+            <TouchableOpacity
+              style={style.tagItemButton}
+              onPress={() => handleRemoveTag(tag)}
+              key={tag}
+            >
+              <DefaultText>{tag}</DefaultText>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
         <Controller
           control={control}
           name="notes"
@@ -230,9 +288,10 @@ export default function ModifySubscriptionForm(props: FormProps) {
           render={({field: {onChange, onBlur, value}}) => (
             <Input
               inputStyle={style.defaultTextInputStyle}
+              containerStyle={style.defaultTextInputContainerStyle}
               labelStyle={style.defaultLabelStyle}
+              errorStyle={style.errorStyle}
               placeholder="Notes e.g. Family sharing"
-              errorStyle={{color: 'red'}}
               errorMessage={errors.notes?.message}
               onChangeText={onChange}
               onBlur={onBlur}

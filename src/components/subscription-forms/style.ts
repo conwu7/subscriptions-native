@@ -79,7 +79,6 @@ const style = StyleSheet.create({
   deleteButton: {
     alignItems: 'center',
     backgroundColor: 'firebrick',
-    borderRadius: 30,
     justifyContent: 'center',
     height: 60,
     width: '50%',
@@ -127,7 +126,6 @@ const style = StyleSheet.create({
   submitButton: {
     alignItems: 'center',
     backgroundColor: 'darkslategray',
-    borderRadius: 30,
     justifyContent: 'center',
     height: 60,
     width: '50%',

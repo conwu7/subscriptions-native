@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../subscriptions-native/.idea/subscriptions-native.iml" filepath="$PROJECT_DIR$/../subscriptions-native/.idea/subscriptions-native.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/subscriptions-native.iml" filepath="$PROJECT_DIR$/.idea/subscriptions-native.iml" />
     </modules>
   </component>
 </project>

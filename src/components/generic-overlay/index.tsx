@@ -1,12 +1,13 @@
 import {Overlay} from '@rneui/themed';
 import {View} from 'react-native';
 import style from './style';
+import React from 'react';
 
 interface GenericOverlayProps {
   isVisible: boolean;
   onClose: () => void;
-  children: any;
-  styles?: Record<string, any>[];
+  children: string | number | React.JSX.Element | React.JSX.Element[];
+  styles?: Record<string, string | number>[];
 }
 
 export default function GenericOverlay(props: GenericOverlayProps) {

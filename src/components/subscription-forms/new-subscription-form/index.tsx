@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import DefaultText from '../../default-text';
 import style from '../style';
 import {Input} from '@rneui/base';
-import {Entypo, Ionicons} from '@expo/vector-icons';
+import {Entypo} from '@expo/vector-icons';
 import {useState} from 'react';
 import Dropdown from 'react-native-input-select';
 import {Subscription} from '../../../shared/types/subscription';

@@ -1,11 +1,8 @@
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 import style from './style';
 import DefaultText from '../default-text';
-import {AntDesign} from '@expo/vector-icons';
-import {capitalizeFirstLetter} from '../../shared/utility';
-import {BillingPeriod, SortType, SortValues} from '../../shared/enums';
+import {BillingPeriod} from '../../shared/enums';
 import {useState} from 'react';
-import {BillingPeriodFilterType, TagsFilterType} from '../../shared/types/filters';
 
 interface FilterSettingsProps {
   allTags: string[];
@@ -68,9 +65,7 @@ export default function FilterSettings(props: FilterSettingsProps) {
         {props.allTags.map(item => (
           <TouchableOpacity
             key={item}
-            style={[style.tagItemButton].concat(
-              selectedTags.has(item) ? (style.selectedButton as any) : []
-            )}
+            style={[style.tagItemButton, selectedTags.has(item) ? style.selectedButton : {}]}
             onPress={() => handleTagClick(item)}
           >
             <DefaultText>{item}</DefaultText>
@@ -85,9 +80,10 @@ export default function FilterSettings(props: FilterSettingsProps) {
         {Object.values(BillingPeriod).map(item => (
           <TouchableOpacity
             key={item}
-            style={[style.tagItemButton].concat(
-              selectedBillingPeriods.has(item) ? (style.selectedButton as any) : []
-            )}
+            style={[
+              style.tagItemButton,
+              selectedBillingPeriods.has(item) ? style.selectedButton : {},
+            ]}
             onPress={() => handleBillingPeriodClick(item)}
           >
             <DefaultText>{item}</DefaultText>

@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {DefaultFonts} from '../../shared/enums';
 
 const style = StyleSheet.create({
   colorPicker: {

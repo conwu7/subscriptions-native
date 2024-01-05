@@ -18,7 +18,7 @@ SplashScreen.preventAutoHideAsync();
 
 interface DefaultTextProps {
   weight?: 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
-  styles?: Record<string, any>[];
+  styles?: Record<string, string | number>[];
   children?: string | React.JSX.Element;
 }
 

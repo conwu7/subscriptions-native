@@ -8,10 +8,12 @@ import GenericOverlay from '../generic-overlay';
 import SortSettings from '../sort-settings';
 import {BillingPeriod, SortType, SortValues} from '../../shared/enums';
 import FilterSettings from '../filter-settings';
+import Settings from '../settings';
 
 interface FooterProps {
   addSubscription: (subscription: Subscription) => void;
   allTags: string[];
+  refreshLists: () => Promise<void>;
   handleSortChange: (type: SortType, value: SortValues) => void;
   handleFilterApply: (
     selectedTags: Set<string>,
@@ -31,10 +33,16 @@ export default function Footer(props: FooterProps) {
   const [isNewFormDisplayed, setNewFormDisplayStatus] = useState(false);
   const [isSortSettingsDisplayed, setSortSettingsStatus] = useState(false);
   const [isFilterSettingsDisplayed, setFilterSettingsStatus] = useState(false);
+  const [isDisplayingSettings, setSettingsStatus] = useState(false);
+
+  const settingsOnClose = async () => {
+    await props.refreshLists();
+    setSettingsStatus(false);
+  };
 
   return (
     <View style={style.footer}>
-      <TouchableOpacity style={style.footerButtonDefault}>
+      <TouchableOpacity style={style.footerButtonDefault} onPress={() => setSettingsStatus(true)}>
         <Feather name="settings" size={30} color="black" />
       </TouchableOpacity>
       <TouchableOpacity
@@ -95,6 +103,10 @@ export default function Footer(props: FooterProps) {
             selectedTags={props.filterSettings.selectedTags}
           />
         )}
+      </GenericOverlay>
+
+      <GenericOverlay isVisible={isDisplayingSettings} onClose={() => setSettingsStatus(false)}>
+        {isDisplayingSettings && <Settings onClose={settingsOnClose} />}
       </GenericOverlay>
     </View>
   );

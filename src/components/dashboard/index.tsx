@@ -31,17 +31,18 @@ export default function Dashboard() {
 
       setSortSettings(JSON.parse(settings));
     };
-    const getList = async () => {
-      const list = await AsyncStorage.getItem('subscriptionList');
-      if (!list) return;
-
-      const processedList = processSubscriptions(JSON.parse(list));
-      setSubscriptions(processedList);
-    };
 
     getSortSettings();
     getList();
   }, []);
+
+  const getList = async () => {
+    const list = await AsyncStorage.getItem('subscriptionList');
+    if (!list) return;
+
+    const processedList = processSubscriptions(JSON.parse(list));
+    setSubscriptions(processedList);
+  };
 
   const handleFilterApply = (
     selectedTags: Set<string>,
@@ -148,6 +149,7 @@ export default function Dashboard() {
         modifySubscription={modifySubscription}
       />
       <Footer
+        refreshLists={getList}
         handleFilterApply={handleFilterApply}
         addSubscription={addSubscription}
         allTags={allTags}

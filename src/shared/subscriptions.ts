@@ -58,3 +58,11 @@ export function filterSubscriptions(
     }
   });
 }
+
+export function isValidSubscription(value: any): value is Subscription {
+  return (
+    typeof value?.name === 'string' &&
+    typeof value?.nextBillingDate === 'string' &&
+    typeof value?.amount === 'number'
+  );
+}

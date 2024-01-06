@@ -37,7 +37,7 @@ function isPast(date: string | Date) {
   return dayjs().isAfter(dayjs(date), 'days');
 }
 
-export function toStandardDateFormat(date: string | Date) {
+export function toStandardDateFormat(date?: string | Date) {
   return dayjs(date).format('YYYY-MM-DD');
 }
 

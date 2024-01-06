@@ -6,7 +6,7 @@ import React from 'react';
 interface GenericOverlayProps {
   isVisible: boolean;
   onClose: () => void;
-  children: string | number | React.JSX.Element | React.JSX.Element[];
+  children: string | number | React.JSX.Element | React.JSX.Element[] | boolean;
   styles?: Record<string, string | number>[];
 }
 

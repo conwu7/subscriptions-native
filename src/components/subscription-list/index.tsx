@@ -14,9 +14,9 @@ interface SubscriptionListProps {
 export default function SubscriptionList(props: SubscriptionListProps) {
   return (
     <ScrollView style={style.subscriptionList}>
-      {props.subscriptions.map(sub => (
+      {props.subscriptions.map((sub, index) => (
         <SubscriptionItem
-          key={sub.id}
+          key={`${sub.id}-${index}`}
           allTags={props.allTags}
           subscription={sub}
           billingPeriod={props.billingPeriod}

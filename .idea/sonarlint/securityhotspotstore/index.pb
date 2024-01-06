@@ -26,3 +26,23 @@ O
 src/components/header/index.tsx,e/2/e2b71fad75d5baafb833ff0bf61190a693e7f5d2
 q
 Asrc/components/subscription-forms/new-subscription-form/index.tsx,e/1/e19085e03d89e6d86dcb7c5ebc75e1f6a04b51be
+Q
+!src/components/settings/index.tsx,9/3/93b20a81003cf55350f36713ce9a815f45c5516c
+P
+ src/components/settings/style.ts,8/8/885a4f1f0c40cde2167b0ac4d81078c75b026896
+O
+src/components/footer/index.tsx,7/4/7450fc3706ba330a304f0e2faf901d0fcbe33aa4
+N
+src/components/footer/style.ts,4/8/48e25806d3fdb8f759ce38d614ca58a6007ce8fe
+W
+'src/components/filter-settings/style.ts,0/e/0eb668435a27300f870ac17d36d9ac3efe635b4b
+C
+src/shared/dates.ts,4/f/4f2d08f721232b349ea49ea690846c5159137618
+R
+"src/components/dashboard/index.tsx,a/2/a2adb589053c90d8f609cd4f38228fe5fcb8c017
+K
+src/shared/subscriptions.ts,0/8/08737357b6a74bb860d1c6d8813d8a3d43b1115d
+P
+ src/shared/types/subscription.ts,1/c/1c720eabb61a5ad6574c154ee3f63b8b587595a3
+Z
+*src/components/subscription-list/index.tsx,f/8/f8d71e5b10d2755122a5f7b5ec253d66ac43f376

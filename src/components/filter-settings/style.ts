@@ -4,8 +4,8 @@ const style = StyleSheet.create({
   sortContainer: {
     flex: 1,
     flexDirection: 'column',
-    // justifyContent: 'flex-end',
     padding: 40,
+    paddingTop: 80,
   },
   title: {
     fontSize: 30,

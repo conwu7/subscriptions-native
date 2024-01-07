@@ -14,13 +14,15 @@ const style = StyleSheet.create({
   costText: {
     fontSize: 19,
   },
-  detailsSection: {},
+  detailsSection: {
+    maxWidth: '65%',
+  },
   subscriptionItem: {
     alignItems: 'center',
     borderRadius: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 81,
+    minHeight: 81,
     marginBottom: 7,
     paddingVertical: 10,
     paddingHorizontal: 20,

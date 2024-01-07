@@ -46,3 +46,9 @@ P
  src/shared/types/subscription.ts,1/c/1c720eabb61a5ad6574c154ee3f63b8b587595a3
 Z
 *src/components/subscription-list/index.tsx,f/8/f8d71e5b10d2755122a5f7b5ec253d66ac43f376
+[
++node_modules/@types/react-native/index.d.ts,f/9/f9b068fea0939f365ea28d61b4695a3db13cacee
+Y
+)src/components/subscription-item/style.ts,4/6/460bdad9aad57e3f0f7b66e5a75779810c34ae38
+Z
+*src/components/subscription-item/index.tsx,c/f/cf1f425d31f8eff62524ea630390499e1687426e

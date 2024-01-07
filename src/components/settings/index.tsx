@@ -87,7 +87,7 @@ export default function Settings(props: SettingsProps) {
   return (
     <View style={style.settingsContainer}>
       <DefaultText weight={700} styles={[style.title]}>
-        Backup Settings
+        Settings
       </DefaultText>
       <TouchableOpacity style={style.backupButton} onPress={saveBackupFile}>
         <DefaultText styles={[style.backupButtonText]}>Create new backup</DefaultText>
